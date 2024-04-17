@@ -1,4 +1,4 @@
-package com.youtube.jwt.util;
+package com.youtube.ecommerce.util;
 
 import java.util.Date;
 import java.util.HashMap;

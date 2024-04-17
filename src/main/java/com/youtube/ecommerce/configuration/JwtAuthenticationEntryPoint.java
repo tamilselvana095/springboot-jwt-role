@@ -1,4 +1,4 @@
-package com.youtube.jwt.configuration;
+package com.youtube.ecommerce.configuration;
 
 import java.io.IOException;
 

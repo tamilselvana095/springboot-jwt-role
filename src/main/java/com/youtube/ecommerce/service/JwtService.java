@@ -1,4 +1,4 @@
-package com.youtube.jwt.service;
+package com.youtube.ecommerce.service;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -14,11 +14,11 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.youtube.jwt.dao.UserDao;
-import com.youtube.jwt.entity.JwtRequest;
-import com.youtube.jwt.entity.JwtResponse;
-import com.youtube.jwt.entity.User;
-import com.youtube.jwt.util.JwtUtil;
+import com.youtube.ecommerce.dao.UserDao;
+import com.youtube.ecommerce.entity.JwtRequest;
+import com.youtube.ecommerce.entity.JwtResponse;
+import com.youtube.ecommerce.entity.User;
+import com.youtube.ecommerce.util.JwtUtil;
 
 @Service
 public class JwtService implements UserDetailsService {

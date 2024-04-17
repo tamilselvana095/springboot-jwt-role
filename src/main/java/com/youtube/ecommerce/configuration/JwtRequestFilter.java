@@ -1,4 +1,4 @@
-package com.youtube.jwt.configuration;
+package com.youtube.ecommerce.configuration;
 
 import java.io.IOException;
 
@@ -15,8 +15,8 @@ import org.springframework.security.web.authentication.WebAuthenticationDetailsS
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
-import com.youtube.jwt.service.JwtService;
-import com.youtube.jwt.util.JwtUtil;
+import com.youtube.ecommerce.service.JwtService;
+import com.youtube.ecommerce.util.JwtUtil;
 
 import io.jsonwebtoken.ExpiredJwtException;
 
