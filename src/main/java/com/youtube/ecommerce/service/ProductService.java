@@ -1,5 +1,6 @@
 package com.youtube.ecommerce.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,5 +29,20 @@ public class ProductService {
 	
 	public void deleteProductDetails(Integer productId) {
 		productDao.deleteById(productId);
+	}
+	
+	public List<Product> getProductDetails(boolean isSingleProductCheckout,Integer productId) {
+		if(isSingleProductCheckout) {
+			// we are going to buy single product
+			
+			List<Product> list=new ArrayList<>();
+			Product product = productDao.findById(productId).get();
+			list.add(product);
+			return list;
+		}else {
+			//we are going to checkout entire cart
+		}
+		
+		return new ArrayList<>();
 	}
 }
