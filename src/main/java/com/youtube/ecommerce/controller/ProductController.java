@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
@@ -68,8 +69,8 @@ public class ProductController {
 	
 	
 	@GetMapping({"/getAllProducts"})
-	public List<Product> getAllProducts(){
-		return productService.getAllProducts();
+	public List<Product> getAllProducts(@RequestParam(defaultValue = "0") int pageNumber){
+		return productService.getAllProducts(pageNumber);
 	}
 	
 
@@ -88,7 +89,7 @@ public class ProductController {
 	@GetMapping({"/getProductDetails/{isSingleProductCheckout}/{productId}"})
 	public List<Product> getProductDetails(@PathVariable(name="isSingleProductCheckout") boolean isSingleProductCheckout,
 								  @PathVariable(name="productId") Integer productId) {
-		System.out.println("product details request");
+		//System.out.println("product details request");
 		
 		return productService.getProductDetails(isSingleProductCheckout, productId);
 	}

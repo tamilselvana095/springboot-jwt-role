@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.youtube.ecommerce.dao.ProductDao;
@@ -19,8 +21,10 @@ public class ProductService {
 		return productDao.save(product);
 	}
 	
-	public List<Product> getAllProducts(){
-		return productDao.findAll();
+	public List<Product> getAllProducts(int pageNumber){
+		
+		Pageable pageable = PageRequest.of(pageNumber, 10);
+		return productDao.findAll(pageable);
 	}
 	
 	public Product getProductDetailsById(Integer productId) {
@@ -38,6 +42,8 @@ public class ProductService {
 			List<Product> list=new ArrayList<>();
 			Product product = productDao.findById(productId).get();
 			list.add(product);
+			//System.out.println(list);
+			
 			return list;
 		}else {
 			//we are going to checkout entire cart
