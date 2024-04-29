@@ -6,9 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.youtube.ecommerce.configuration.JwtRequestFilter;
+import com.youtube.ecommerce.dao.CartDao;
 import com.youtube.ecommerce.dao.OrderDetailDao;
 import com.youtube.ecommerce.dao.ProductDao;
 import com.youtube.ecommerce.dao.UserDao;
+import com.youtube.ecommerce.entity.Cart;
 import com.youtube.ecommerce.entity.OrderDetail;
 import com.youtube.ecommerce.entity.OrderInput;
 import com.youtube.ecommerce.entity.OrderProductQuantity;
@@ -29,7 +31,11 @@ public class OrderDetailService {
 	@Autowired
 	private UserDao userDao;
 	
-	public void placeOrder(OrderInput orderInput) {
+	@Autowired
+	private CartDao cartDao;
+	
+	
+	public void placeOrder(OrderInput orderInput, boolean isSingleProductCheckout) {
 		List<OrderProductQuantity> productQuantityList=orderInput.getOrderProductQuantityList();
 		
 		for(OrderProductQuantity o: productQuantityList) {
@@ -50,6 +56,14 @@ public class OrderDetailService {
 					user
 					
 					);
+			
+			//empty the cart
+			
+			if(!isSingleProductCheckout) {
+				
+				List<Cart> carts = cartDao.findByUser(user);
+				carts.stream().forEach(x -> cartDao.deleteById(x.getCartId()));
+			}
 			
 			orderDetailDao.save(orderDetail);
 		}
