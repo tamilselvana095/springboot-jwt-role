@@ -1,5 +1,6 @@
 package com.youtube.ecommerce.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,6 +68,44 @@ public class OrderDetailService {
 			
 			orderDetailDao.save(orderDetail);
 		}
+	}
+	
+	public List<OrderDetail> getOrderDetails() {
+		String username= JwtRequestFilter.CURRENT_USER;
+		
+		User user=userDao.findById(username).get();
+		
+		return orderDetailDao.findByUser(user);
+	}
+	
+	public List<OrderDetail> getAllOrderDetails(String status) {
+		
+		List<OrderDetail> orderDetails=new ArrayList<>();
+		
+		if(status.equals("All")) {
+			
+			 orderDetailDao.findAll().forEach(
+					 x->orderDetails.add(x)
+					 );
+		}else {
+			
+			orderDetailDao.findByOrderStatus(status).forEach(
+					x->orderDetails.add(x)
+					);
+		}
+		
+		
+		 
+		 return orderDetails;
+	}
+	
+	public void markOrderAsDelivered(Integer orderId) {
+	   OrderDetail orderDetail= orderDetailDao.findById(orderId).get();
+	   
+	   if(orderDetail != null) {
+		   orderDetail.setOrderStatus("Delivered");
+		   orderDetailDao.save(orderDetail);
+	   }
 	}
 
 }
