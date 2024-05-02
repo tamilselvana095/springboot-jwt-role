@@ -8,12 +8,27 @@ public class OrderInput {
 	private String fullAddress;
 	private String contactNumber;
 	private String alternateContactNumber;
+	private String transactionId;
 	private List<OrderProductQuantity> orderProductQuantityList;
 	
 	public OrderInput() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
+	
+
+	public String getTransactionId() {
+		return transactionId;
+	}
+
+
+
+	public void setTransactionId(String transactionId) {
+		this.transactionId = transactionId;
+	}
+
+
 
 	public String getFullName() {
 		return fullName;
@@ -58,8 +73,8 @@ public class OrderInput {
 	@Override
 	public String toString() {
 		return "OrderInput [fullName=" + fullName + ", fullAddress=" + fullAddress + ", contactNumber=" + contactNumber
-				+ ", alternateContactNumber=" + alternateContactNumber + ", orderProductQuantityList="
-				+ orderProductQuantityList + "]";
+				+ ", alternateContactNumber=" + alternateContactNumber + ", transactionId=" + transactionId
+				+ ", orderProductQuantityList=" + orderProductQuantityList + "]";
 	}
 	
 	

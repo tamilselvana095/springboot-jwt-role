@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.youtube.ecommerce.entity.OrderDetail;
 import com.youtube.ecommerce.entity.OrderInput;
+import com.youtube.ecommerce.entity.TransactionDetails;
 import com.youtube.ecommerce.service.OrderDetailService;
 
 @RestController
@@ -45,6 +46,12 @@ public class OrderDetailController {
 	@GetMapping({"/markOrderAsDelivered/{orderId}"})
 	public void markOrderAsDelivered(@PathVariable(name = "orderId") Integer orderId) {
 		orderDetailService.markOrderAsDelivered(orderId);
+	}
+	
+	@PreAuthorize("hasRole('User')")
+	@GetMapping({"/createTransaction/{amount}"})
+	public TransactionDetails createTransaction(@PathVariable(name = "amount") Double amount) {
+		return orderDetailService.createTransaction(amount);
 	}
 
 }
